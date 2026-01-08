@@ -12,24 +12,19 @@ export default function Home() {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <motion.h1
-          className="text-7xl tracking-[0.3em] font-light"
-          style={{
-            background: "linear-gradient(135deg, #D4AF37 0%, #F4E5A1 50%, #D4AF37 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          LUCE
-        </motion.h1>
+              className="text-7xl tracking-[0.3em] font-light"
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                background: "linear-gradient(135deg, #D4AF37 0%, #F4E5A1 50%, #D4AF37 100%)",
+                 backgroundSize: "200% 200%",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              LUCE
+            </motion.h1>
+
+
         <motion.p
           className="text-base text-gray-600 max-w-md"
           initial={{ opacity: 0 }}
@@ -40,7 +35,7 @@ export default function Home() {
         </motion.p>
       </motion.div>
 
-      {/* 하이퍼링크 버튼 영역 */}
+      {/* 버튼 영역 */}
       <motion.nav
         className="flex flex-col gap-8"
         initial={{ opacity: 0, y: 50 }}
@@ -55,18 +50,23 @@ export default function Home() {
           모델 지원하기
         </NavLink>
 
-        <NavLink to="/advertising" delay={0.2}>
+        {/* 광고 문의는 Gmail 새 메일 작성 페이지로 */}
+        <NavLinkExternal
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=luceagency0925@gmail.com&su=광고 캐스팅 문의&body=문의 내용을 입력해주세요"
+          delay={0.2}
+        >
           광고·캐스팅 문의하기
-        </NavLink>
+        </NavLinkExternal>
 
         <NavLink to="/contact" delay={0.3}>
-          연락처
+          CONTACT
         </NavLink>
       </motion.nav>
     </section>
   );
 }
 
+// 내부 페이지 이동용
 function NavLink({
   to,
   children,
@@ -97,6 +97,43 @@ function NavLink({
         {children}
         <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#D4AF37] to-[#F4E5A1] transition-all duration-300 group-hover:w-full"></span>
       </Link>
+    </motion.div>
+  );
+}
+
+// 외부 링크용 (메일, 외부 사이트 등)
+function NavLinkExternal({
+  href,
+  children,
+  delay,
+}: {
+  href: string;
+  children: React.ReactNode;
+  delay: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: 0.8 + delay }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-2xl tracking-wider relative group inline-block"
+        style={{
+          background: "linear-gradient(135deg, #D4AF37 0%, #F4E5A1 50%, #D4AF37 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
+        {children}
+        <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#D4AF37] to-[#F4E5A1] transition-all duration-300 group-hover:w-full"></span>
+      </a>
     </motion.div>
   );
 }

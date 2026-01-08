@@ -38,16 +38,16 @@ export default function About() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-16 space-y-6"
         >
-          <h2 className="text-2xl text-gray-800 mb-4">회사 소개</h2>
+          <h2 className="text-2xl text-gray-800 mb-4">에이전시 소개</h2>
           <p className="text-gray-600 leading-relaxed">
-            LUCE는 광고와 홈쇼핑을 중심으로 다양한 분야의 전문 캐스팅을 진행하는 모델 에이전시입니다.
-            우리는 각 모델의 고유한 매력과 개성을 발견하고, 이를 최적의 프로젝트와 연결하여
-            브랜드와 모델 모두에게 최상의 결과를 제공합니다.
+            LUCE는 홈쇼핑과 광고를 중심으로 전문 캐스팅을 진행하는 모델 에이전시입니다.
+            브랜드의 메시지를 가장 효과적으로 전달할 수 있는 모델을 발굴하고,
+            프로젝트의 목적에 맞는 최적의 매칭을 제공합니다.
           </p>
           <p className="text-gray-600 leading-relaxed">
-            패션, 뷰티, 리빙, 식품 등 다양한 카테고리의 광고 촬영과 홈쇼핑 방송에서
-            검증된 전문성을 바탕으로, 클라이언트의 브랜드 가치를 극대화하고
-            모델의 성공적인 커리어를 함께 만들어갑니다.
+            패션, 뷰티, 리빙, 식품 등 다양한 광고 및 홈쇼핑 방송 경험을 바탕으로
+            클라이언트의 브랜드 가치를 극대화하고,
+            모델이 신뢰받는 커리어를 쌓을 수 있도록 함께합니다.
           </p>
         </motion.section>
 
@@ -61,15 +61,22 @@ export default function About() {
           <h2 className="text-2xl text-gray-800 mb-6">대표 소개</h2>
           <div className="bg-white/50 backdrop-blur-sm rounded-lg p-8 shadow-sm">
             <div className="mb-6">
-              <div className="w-32 h-32 bg-gradient-to-br from-[#D4AF37] to-[#F4E5A1] rounded-full mb-4"></div>
-              <h3 className="text-xl text-gray-800 mb-2">대표 이름</h3>
-              <p className="text-gray-500">Founder & CEO</p>
+              <div className="w-32 h-32 rounded-full p-1 bg-gradient-to-br from-[#D4AF37] to-[#F4E5A1] mb-4">
+              <div
+                    className="w-full h-full rounded-full bg-center bg-cover"
+                    style={{
+                      backgroundImage: "url('/profile_image.jpg')"
+                    }}
+                  />
+                </div>
+              <h3 className="text-xl text-gray-800 mb-2">서영희</h3>
+              <p className="text-gray-500">LUCE 모델 에이전시 대표</p>
             </div>
             <div className="space-y-3 text-gray-600">
-              <p>• 20년 이상의 모델 에이전시 및 캐스팅 경력</p>
-              <p>• 주요 방송사 및 대형 광고 프로젝트 캐스팅 디렉터 역임</p>
-              <p>• 국내외 패션 브랜드 모델 매니지먼트 전문</p>
-              <p>• 홈쇼핑 방송 캐스팅 전문가</p>
+              <p>• 20년 이상 광고 및 홈쇼핑 분야에서 활동 중인 현역 전문 모델</p>
+              <p>• 닌텐도, 현대카드, 한국전력공사 등 대기업 및 공공기관 광고 다수 출연</p>
+              <p>• 공익광고, 기업 홍보 영상, 홈쇼핑 방송 및 라이브커머스 쇼호스트 경험 보유</p>
+              <p>• 현역 모델로서 촬영 현장을 정확히 이해하고, 모델의 강점과 브랜드 니즈를 동시에 고려한 캐스팅 진행</p>
             </div>
           </div>
         </motion.section>
@@ -84,20 +91,28 @@ export default function About() {
           <h2 className="text-2xl text-gray-800 mb-6">주요 서비스</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <ServiceCard
-              title="광고 캐스팅"
-              description="TV CF, 온라인 광고, 인쇄 광고 등 다양한 매체의 광고 캐스팅을 전문적으로 진행합니다."
+              title="광고 모델 캐스팅"
+              description="TV CF, 온라인 광고, 인쇄 광고 등 다양한 광고 프로젝트에서
+              브랜드와 콘셉트에 맞는 모델을 섭외합니다.
+              촬영 목적과 현장 상황을 고려한 실전 중심 캐스팅을 진행합니다."
             />
             <ServiceCard
-              title="홈쇼핑 모델"
-              description="주요 홈쇼핑 채널의 방송 모델 캐스팅 및 매니지먼트를 제공합니다."
+              title="홈쇼핑 방송 모델 캐스팅"
+              description="주요 홈쇼핑 채널의 방송 모델 캐스팅을 전문으로 하며,
+              방송 특성에 맞는 모델 매칭과 사전 조율을 제공합니다."
             />
             <ServiceCard
-              title="패션 모델"
-              description="런웨이, 화보, 룩북 촬영 등 패션 분야의 전문 모델 섭외를 진행합니다."
+              title="광고·영상 모델 섭외"
+              description="기업 홍보 영상, 공익광고, 브랜드 콘텐츠 등
+              다양한 영상 촬영에 적합한 모델을 섭외합니다.
+              프로젝트 목적에 맞는 모델 캐스팅을 지향합니다."
+
             />
             <ServiceCard
-              title="모델 매니지먼트"
-              description="소속 모델들의 체계적인 교육과 커리어 관리를 통해 성장을 지원합니다."
+              title="모델 매니지먼트 & 커뮤니케이션 지원"
+              description="캐스팅 이후에도 모델과의 지속적인 소통을 통해
+              촬영이 원활하게 진행될 수 있도록 지원합니다.
+              프로젝트에 따라 필요 시 현장 커뮤니케이션을 돕습니다."
             />
           </div>
         </motion.section>
