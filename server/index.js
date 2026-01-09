@@ -62,18 +62,22 @@ app.get("/api/health", (req, res) => res.json({ status: "ok", message: "API is h
 /* =====================
    지원서 제출 API (/api/apply)
 ===================== */
+/* =====================
+   지원서 제출 API (/api/apply)
+===================== */
 app.post("/api/apply", upload.single("profileFile"), async (req, res) => {
   console.log("☎️ /api/apply 요청 수신됨");
 
   try {
-    const { name, phone, email, message } = req.body;
+    // 1. 프론트에서 보낸 새 필드들(age, height, sns)을 추가로 받아야 합니다.
+    const { name, phone, email, age, height, sns, message } = req.body;
 
-    if (!name || !phone || !email) {
+    // 필수값 체크 (age, height 등이 빠지면 400 에러가 납니다)
+    if (!name || !phone || !email || !age || !height) {
       console.log("⚠️ 필수 데이터 부족");
-      return res.status(400).json({ success: false, error: "필수 정보가 누락되었습니다." });
+      return res.status(400).json({ success: false, error: "필수 정보(이름, 나이, 연락처, 이메일, 키)가 누락되었습니다." });
     }
 
-    // 이메일 설정
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -82,17 +86,25 @@ app.post("/api/apply", upload.single("profileFile"), async (req, res) => {
       },
     });
 
-    // 메일 내용 구성
+    // 2. 메일 내용에 새 정보들을 포함시킵니다.
     const mailOptions = {
       from: `"LUCE 모델 에이전시" <${process.env.MAIL_USER}>`,
       to: process.env.RECEIVER_EMAIL,
-      subject: `[신규 지원] ${name}님`,
+      subject: `[신규 지원] ${name}님 (${height}cm / ${age}세)`,
       html: `
-        <h3>LUCE 신규 모델 지원서</h3>
-        <p><strong>이름:</strong> ${name}</p>
-        <p><strong>연락처:</strong> ${phone}</p>
-        <p><strong>이메일:</strong> ${email}</p>
-        <p><strong>메시지:</strong><br/>${message || "-"}</p>
+        <div style="font-family: sans-serif; line-height: 1.6; color: #333;">
+          <h2 style="color: #D4AF37; border-bottom: 2px solid #D4AF37; padding-bottom: 10px;">LUCE 신규 모델 지원서</h2>
+          <p><strong>이름:</strong> ${name}</p>
+          <p><strong>나이:</strong> ${age}세</p>
+          <p><strong>신장:</strong> ${height}cm</p>
+          <p><strong>연락처:</strong> ${phone}</p>
+          <p><strong>이메일:</strong> ${email}</p>
+          <p><strong>SNS:</strong> ${sns || "미기재"}</p>
+          <p style="background: #f9f9f9; padding: 15px; border-radius: 5px;">
+            <strong>경력 및 메시지:</strong><br/>
+            ${message ? message.replace(/\n/g, "<br/>") : "-"}
+          </p>
+        </div>
       `,
       attachments: req.file
         ? [{ filename: req.file.originalname, content: req.file.buffer }]
@@ -108,12 +120,4 @@ app.post("/api/apply", upload.single("profileFile"), async (req, res) => {
     console.error("❌ 서버 내부 에러:", error);
     return res.status(500).json({ success: false, error: error.message });
   }
-});
-
-/* =====================
-   서버 실행
-===================== */
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 서버가 포트 ${PORT}에서 실행 중입니다.`);
 });
