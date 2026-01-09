@@ -1,3 +1,5 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* 그 외의 코드나 빈 줄은 @import들 아래에 오게 하세요 */
