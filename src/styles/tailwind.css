@@ -1,10 +1,4 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* src 폴더 전체와 프로젝트 루트를 다 뒤지게 합니다 */
 @source "../**/*.{js,ts,jsx,tsx}";
-@source "../../**/*.{js,ts,jsx,tsx}";
-
-@theme {
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
-}
