@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { postApply } from "../api/api"; // 경로 확인
+import { postApply } from "../../api/api"; // 경로 확인
 
 export default function Apply() {
   const [file, setFile] = useState<File | null>(null);
